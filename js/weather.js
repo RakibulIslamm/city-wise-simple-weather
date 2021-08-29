@@ -1,3 +1,8 @@
+const weatherContainer = document.getElementById('weather');
+const bgImage = document.querySelector('.bg');
+const errorMsg = document.getElementById('error-msg1');
+const errorMsg2 = document.getElementById('error-msg2');
+
 // GPS
 var options = {
     enableHighAccuracy: true,
@@ -23,12 +28,15 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 const userInput = document.getElementById('user-input');
 const loadWeather = () => {
     const cityName = userInput.value;
-    const errorMsg = document.getElementById('error-msg1');
     if (cityName == '') {
+        errorMsg2.style.display = 'none';
         errorMsg.style.display = 'block';
+        weatherContainer.textContent = '';
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        url(images/danger.jpg)`
     } else {
         errorMsg.style.display = 'none';
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},1440,+880&appid=143f94029121f5175bd3737e4e2f0371`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=143f94029121f5175bd3737e4e2f0371`
         fetch(url)
             .then(res => res.json())
             .then(data => displayWeather(data))
@@ -39,7 +47,11 @@ const loadWeather = () => {
 
 
 const displayError = error => {
-    document.getElementById('error-msg2').style.display = 'block'
+    errorMsg.style.display = 'none';
+    errorMsg2.style.display = 'block';
+    weatherContainer.textContent = '';
+    bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        url(images/danger.jpg)`
 }
 
 
@@ -57,7 +69,6 @@ const loadMyWeather = (latitude, longitude) => {
 
 // Display Weather
 
-const weatherContainer = document.getElementById('weather');
 // Display my location weather
 const displayCurrent = current => {
     // console.log(current);
@@ -113,7 +124,7 @@ const displayWeather = weather => {
     changeBgImage(weatherDetails.description);
 }
 
-const bgImage = document.querySelector('.bg');
+
 const changeBgImage = desc => {
     if (desc == 'overcast clouds') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
