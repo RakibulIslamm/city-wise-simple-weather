@@ -143,6 +143,10 @@ const changeBgImage = desc => {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/rain.jpg)`
     }
+    else if (desc == 'moderate rain') {
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        url(images/rain.jpg)`
+    }
     else if (desc == 'light rain') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/light-rain.jpg)`
