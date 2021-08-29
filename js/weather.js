@@ -108,6 +108,7 @@ const displayWeather = weather => {
         }
     }
     const weatherDetails = weatherArrCount();
+    changeBgImage(weatherDetails.description);
 
     weatherContainer.textContent = '';
     const div = document.createElement('div');
@@ -121,11 +122,11 @@ const displayWeather = weather => {
     <img class="icon" src="http://openweathermap.org/img/wn/${weatherDetails.icon}.png" alt="">
     `;
     weatherContainer.appendChild(div);
-    changeBgImage(weatherDetails.description);
 }
 
 
 const changeBgImage = desc => {
+    // console.log(desc);
     if (desc == 'overcast clouds') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
         url(images/overcast-clouds.jpg)`
@@ -154,6 +155,14 @@ const changeBgImage = desc => {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/rain.jpg)`
     }
+    else if (desc == 'rain') {
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        url(images/rain.jpg)`
+    }
+    else if (desc == 'heavy intensity rain') {
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        url(images/rain.jpg)`
+    }
     else if (desc == 'moderate rain') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/rain.jpg)`
@@ -177,5 +186,9 @@ const changeBgImage = desc => {
     else if (desc == 'haze') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/mist.jpg)`
+    }
+    else {
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        url(images/default.jpg)`
     }
 }
