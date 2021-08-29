@@ -13,7 +13,6 @@
 }
 
 .container{
-    position: relative;
     width: 100%;
     min-height: 400px;
     height: 100vh;
@@ -22,7 +21,6 @@
     align-items: center;
     flex-direction: column;
     padding: 50px;
-    position: relative;
 }
 
 .bg{
@@ -118,5 +116,22 @@ input::placeholder{
 .search-weather button:hover{
     background: tomato;
     color: #fff;
+}
+
+
+@media only screen and (max-width: 600px){
+    .weather{
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .search-weather{
+        width: 100%;
+    }
+    .search-weather input{
+        width: 100%;
+    }
 }
 
