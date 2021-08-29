@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav h1{
+    color: white;
+    font-size: 40px;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+    position: relative;
+}
+
+.bg{
+    /* background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.253)),
+    url(../images/45-450780_snow.png); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: errortran 1s all ease-in-out;
+}
+
+.weather{
+    width: 550px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.celcius{
+    color: white;
+    font-size: 65px;
+}
+
+.city{
+    color: white;
+}
+
+.city .city-name{
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.city .descrip{
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.city sup {
+    margin-left: 5px;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.icon {
+    width: 80px;
+}
+
+.search-weather input{
+    width: 400px; 
+    padding: 10px 20px; 
+    border: 1px solid #c5c5c5;
+    border-radius: 35px;
+    background: rgb(39 115 228 / 43%);
+    outline: none;
+    color: #fff;
+}
+
+input::placeholder{
+    color: rgba(255, 255, 255, 0.767);
+}
+
+#error-msg1, #error-msg2 {
+    text-align: center;
+    margin-top: 5px;
+    color: #772d10;
+    display: none;
+    animation: errortran .2s ease-in-out;
+    /* transition: .6s; */
+}
+
+@keyframes errortran{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+
+.search-weather button{
+    padding: 10px 40px;
+    border-radius: 35px;
+    border: 1px solid #c5c5c5;
+    background: rgb(39 115 228 / 43%);
+    cursor: pointer;
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10px;
+    transition: .4s;
+}
+.search-weather button:hover{
+    background: tomato;
+    color: #fff;
+}
+
