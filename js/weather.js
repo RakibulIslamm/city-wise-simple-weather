@@ -133,7 +133,7 @@ const changeBgImage = desc => {
     }
     else if (desc == 'broken clouds') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-        url("images/broken-clouds.png")`
+        url(images/broken-clouds.png)`
     }
     else if (desc == 'shower rain') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
