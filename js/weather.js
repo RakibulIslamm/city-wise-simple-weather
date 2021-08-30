@@ -128,67 +128,67 @@ const displayWeather = weather => {
 const changeBgImage = desc => {
     // console.log(desc);
     if (desc == 'overcast clouds') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(16 50 53 / 70%)),
         url(images/overcast-clouds.jpg)`
     }
     else if (desc == 'few clouds') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(16 50 53 / 70%)),
         url(images/few-clouds.jpg)`
     }
     else if (desc == 'clear sky') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(16 50 53 / 70%)),
         url(images/clear-sky.jpg)`
     }
     else if (desc == 'scattered clouds') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/scattered-clouds.jpg)`
     }
     else if (desc == 'broken clouds') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/broken-clouds.png)`
     }
     else if (desc == 'shower rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/shower-rain.jpg)`
     }
     else if (desc == 'rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/rain.jpg)`
     }
     else if (desc == 'rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/rain.jpg)`
     }
     else if (desc == 'heavy intensity rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/rain.jpg)`
     }
     else if (desc == 'moderate rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/rain.jpg)`
     }
     else if (desc == 'light rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/light-rain.jpg)`
     }
     else if (desc == 'thunderstorm') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/thunder.jpg)`
     }
     else if (desc == 'snow') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/snow.jpg)`
     }
     else if (desc == 'mist') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/mist.jpg)`
     }
     else if (desc == 'haze') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/mist.jpg)`
     }
     else {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/default.jpg)`
     }
 }
