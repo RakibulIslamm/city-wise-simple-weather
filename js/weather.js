@@ -3,26 +3,6 @@ const bgImage = document.querySelector('.bg');
 const errorMsg = document.getElementById('error-msg1');
 const errorMsg2 = document.getElementById('error-msg2');
 
-// GPS
-var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-};
-
-function success(pos) {
-    var crd = pos.coords;
-    // console.log(`More or less ${crd.accuracy} meters.`);
-    loadMyWeather(crd.latitude, crd.longitude);
-}
-function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-navigator.geolocation.getCurrentPosition(success, error, options);
-
-// GPS End
-
-
 // Load Weather
 // Search Location
 const userInput = document.getElementById('user-input');
@@ -55,10 +35,69 @@ const displayError = error => {
 }
 
 
+
+
+/* // GPS
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
+
+function success(pos) {
+    var crd = pos.coords;
+    // console.log(`More or less ${crd.accuracy} meters.`);
+    loadMyWeather(crd.latitude, crd.longitude);
+}
+function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+navigator.geolocation.getCurrentPosition(success, error, options);
+// GPS End */
+
+
+/* 
+const zipCode = (lat, lon) => {
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=464ff0148418481097ab1d05c3226330`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data.results[0].components.postcode);
+            return data;
+        });
+
+    const res = await fetch(url)
+    const data = await res.json();
+    console.log(data.results[0].components.postcode);
+}
+ */
+
+
+
+navigator.geolocation.getCurrentPosition(function (position) {
+
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+
+    // Country
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=464ff0148418481097ab1d05c3226330`;
+    // console.log(url);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => loadMyWeather(lat, lon, data.results[0].components.country_code, data.results[0].components.postcode));
+
+    // console.log(lat);
+    // console.log(lon);
+});
+
+
+// https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&${longitude}&zip=${zip},${countryAlpha}&appid=143f94029121f5175bd3737e4e2f0371
+
 // My location
-const loadMyWeather = (latitude, longitude) => {
-    // console.log(latitude, longitude)
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=143f94029121f5175bd3737e4e2f0371`
+const loadMyWeather = (latitude, longitude, countryAlpha, zip) => {
+    // console.log(countryAlpha);
+    // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=143f94029121f5175bd3737e4e2f0371`
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&${longitude}&zip=${zip},${countryAlpha}&appid=143f94029121f5175bd3737e4e2f0371`
     // console.log(url);
     fetch(url)
         .then(res => res.json())
