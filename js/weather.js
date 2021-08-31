@@ -5,7 +5,16 @@ const errorMsg2 = document.getElementById('error-msg2');
 
 // Load Weather
 // Search Location
+
 const userInput = document.getElementById('user-input');
+userInput.addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("myButton").click();
+    }
+})
+
+
 const loadWeather = () => {
     const cityName = userInput.value;
     if (cityName == '') {
@@ -132,20 +141,21 @@ const displayCurrent = current => {
 
     // Current Time
     // var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
-    function myTimer() {
-        var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
-        console.log(time);
-        document.getElementById('time').innerText = time;
-    }
-    setInterval(myTimer, 1000);
 
-    /* var myVar = setInterval(myTimer, 1000);
+    // function myTimer() {
+    //     var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
+    //     // console.log(time);
+    //     document.getElementById('time').innerText = time;
+    // }
+    // setInterval(myTimer, 1000);
+
+    var myVar = setInterval(myTimer, 1000);
 
     function myTimer() {
         var d = new Date();
         var t = d.toLocaleTimeString();
         document.getElementById('time').innerText = t;
-    } */
+    }
 
     weatherContainer.textContent = '';
     const div = document.createElement('div');
