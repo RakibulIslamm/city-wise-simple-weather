@@ -161,22 +161,34 @@ footer a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 20px;
+}
+
+.nav h1{
+    width: 100%;
+    text-align: center;
 }
 
 #time, #date{
     color: #fff;
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: 1px;
     font-weight: 600;
 }
 #time {
-    width: 180px;
+    width: 100%;
+    text-align: right;
 }
 
 #week{
     color: #fff;
-    font-size: 17px;
+    font-size: 15px;
     letter-spacing: 1.5px;
+}
+
+.date-week {
+    width: 100%;
+    text-align: left;
 }
 
 
@@ -215,6 +227,15 @@ footer a{
         font-size: 16px;
         font-weight: 200;
     }
+    .date-week {
+        text-align: center;
+    }
+
+    #time {
+        text-align: center;
+        font-weight: 200;
+    }
+    
 }
 
 
