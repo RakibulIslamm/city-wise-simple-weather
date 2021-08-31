@@ -119,6 +119,34 @@ const displayCurrent = current => {
     const currentLocationWeather = weatherArrCount();
     // console.log(currentLocationWeather)
 
+
+    // Current Date 
+    var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    console.log(utc);
+    document.getElementById('date').innerText = utc;
+
+    // Current weekDay
+    var currrentWeekDay = new Date().toLocaleTimeString('en-us', { weekday: 'long' }).split(' ')[0];
+    console.log(currrentWeekDay);
+    document.getElementById('week').innerText = currrentWeekDay;
+
+    // Current Time
+    // var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
+    function myTimer() {
+        var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
+        console.log(time);
+        document.getElementById('time').innerText = time;
+    }
+    setInterval(myTimer, 1000);
+
+    /* var myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+        var d = new Date();
+        var t = d.toLocaleTimeString();
+        document.getElementById('time').innerText = t;
+    } */
+
     weatherContainer.textContent = '';
     const div = document.createElement('div');
     div.classList.add('weather');
