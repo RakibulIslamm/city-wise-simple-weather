@@ -2,6 +2,37 @@ const weatherContainer = document.getElementById('weather');
 const bgImage = document.querySelector('.bg');
 const errorMsg = document.getElementById('error-msg1');
 const errorMsg2 = document.getElementById('error-msg2');
+const body = document.getElementById('body');
+
+
+
+// Current Date 
+var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+console.log(utc);
+document.getElementById('date').innerText = utc;
+
+// Current weekDay
+var currrentWeekDay = new Date().toLocaleTimeString('en-us', { weekday: 'long' }).split(' ')[0];
+console.log(currrentWeekDay);
+document.getElementById('week').innerText = currrentWeekDay;
+// current time
+var myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+    var d = new Date();
+    var t = d.toLocaleTimeString();
+    document.getElementById('time').innerText = t;
+    if (t.innerText == '') {
+        document.getElementById('loading').style.display = "block"
+    } else {
+        document.getElementById('loading').style.display = "none"
+    }
+}
+
+
+
+
+// window.onload = function () { document.getElementById('loading').style.display = "none" }
 
 // Load Weather
 // Search Location
@@ -129,33 +160,6 @@ const displayCurrent = current => {
     // console.log(currentLocationWeather)
 
 
-    // Current Date 
-    var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
-    console.log(utc);
-    document.getElementById('date').innerText = utc;
-
-    // Current weekDay
-    var currrentWeekDay = new Date().toLocaleTimeString('en-us', { weekday: 'long' }).split(' ')[0];
-    console.log(currrentWeekDay);
-    document.getElementById('week').innerText = currrentWeekDay;
-
-    // Current Time
-    // var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
-
-    // function myTimer() {
-    //     var time = new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1");
-    //     // console.log(time);
-    //     document.getElementById('time').innerText = time;
-    // }
-    // setInterval(myTimer, 1000);
-
-    var myVar = setInterval(myTimer, 1000);
-
-    function myTimer() {
-        var d = new Date();
-        var t = d.toLocaleTimeString();
-        document.getElementById('time').innerText = t;
-    }
 
     weatherContainer.textContent = '';
     const div = document.createElement('div');
@@ -232,10 +236,6 @@ const changeBgImage = desc => {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/rain.jpg)`
     }
-    else if (desc == 'rain') {
-        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
-        url(images/rain.jpg)`
-    }
     else if (desc == 'heavy intensity rain') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/rain.jpg)`
@@ -261,6 +261,10 @@ const changeBgImage = desc => {
         url(images/mist.jpg)`
     }
     else if (desc == 'haze') {
+        bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
+        url(images/mist.jpg)`
+    }
+    else if (desc == 'fog') {
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(16 50 53 / 70%)),
         url(images/mist.jpg)`
     }
