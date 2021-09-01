@@ -29,14 +29,7 @@ function myTimer() {
     }
 }
 
-
-
-
-// window.onload = function () { document.getElementById('loading').style.display = "none" }
-
-// Load Weather
-// Search Location
-
+// Set enter button click
 const userInput = document.getElementById('user-input');
 userInput.addEventListener("keyup", function (event) {
     event.preventDefault();
@@ -45,7 +38,7 @@ userInput.addEventListener("keyup", function (event) {
     }
 })
 
-
+// Search Location Load
 const loadWeather = () => {
     const cityName = userInput.value;
     if (cityName == '') {
@@ -60,124 +53,16 @@ const loadWeather = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => displayWeather(data))
-            .catch(error => displayError(error));
-    }
-    userInput.value = '';
-}
-
-
-const displayError = error => {
-    errorMsg.style.display = 'none';
-    errorMsg2.style.display = 'block';
-    weatherContainer.textContent = '';
-    bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+            .catch(error => {
+                errorMsg.style.display = 'none';
+                errorMsg2.style.display = 'block';
+                weatherContainer.textContent = '';
+                bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/danger.jpg)`
-}
-
-
-
-
-/* // GPS
-var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-};
-
-function success(pos) {
-    var crd = pos.coords;
-    // console.log(`More or less ${crd.accuracy} meters.`);
-    loadMyWeather(crd.latitude, crd.longitude);
-}
-function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-navigator.geolocation.getCurrentPosition(success, error, options);
-// GPS End */
-
-
-/* 
-const zipCode = (lat, lon) => {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=464ff0148418481097ab1d05c3226330`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            // console.log(data.results[0].components.postcode);
-            return data;
-        });
-
-    const res = await fetch(url)
-    const data = await res.json();
-    console.log(data.results[0].components.postcode);
-}
- */
-
-
-
-navigator.geolocation.getCurrentPosition(function (position) {
-
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
-
-    // Country
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=464ff0148418481097ab1d05c3226330`;
-    // console.log(url);
-    fetch(url)
-        .then(res => res.json())
-        .then(data => loadMyWeather(lat, lon, data.results[0].components.country_code, data.results[0].components.postcode));
-
-    // console.log(lat);
-    // console.log(lon);
-});
-
-
-// https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&${longitude}&zip=${zip},${countryAlpha}&appid=143f94029121f5175bd3737e4e2f0371
-
-// My location
-const loadMyWeather = (latitude, longitude, countryAlpha, zip) => {
-    // console.log(countryAlpha);
-    // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=143f94029121f5175bd3737e4e2f0371`
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&${longitude}&zip=${zip},${countryAlpha}&appid=143f94029121f5175bd3737e4e2f0371`
-    // console.log(url);
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayCurrent(data));
-}
-
-
-
-// Display Weather
-
-// Display my location weather
-const displayCurrent = current => {
-    // console.log(current);
-    const weatherArrCount = () => {
-        for (const weatherarr of current.weather) {
-            return weatherarr
-        }
+            });
     }
-    const currentLocationWeather = weatherArrCount();
-    // console.log(currentLocationWeather)
-
-
-
-    weatherContainer.textContent = '';
-    const div = document.createElement('div');
-    div.classList.add('weather');
-    div.innerHTML = `
-    <h2 class="celcius">${parseInt(current.main.temp - 273.15)}<span>&#176;C</span></h2>
-    <div class="city">
-        <h2 class="city-name">${current.name}<sup>${current.sys.country}</sup></h2>
-        <p class="descrip">${currentLocationWeather.description}</p>
-    </div>
-    <img class="icon" src="http://openweathermap.org/img/wn/${currentLocationWeather.icon}.png" alt="">
-    `;
-    weatherContainer.appendChild(div);
-    changeBgImage(currentLocationWeather.description);
-
 
 }
-
 
 // Display search location Weather
 const displayWeather = weather => {
@@ -203,9 +88,62 @@ const displayWeather = weather => {
     <img class="icon" src="http://openweathermap.org/img/wn/${weatherDetails.icon}.png" alt="">
     `;
     weatherContainer.appendChild(div);
+    userInput.value = '';
 }
 
 
+// Current Location Weather 
+// GPS
+navigator.geolocation.getCurrentPosition(function (position) {
+
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+
+    // Country
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=464ff0148418481097ab1d05c3226330`;
+    // console.log(url);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => loadMyWeather(lat, lon, data.results[0].components.country_code, data.results[0].components.postcode));
+});
+
+// My location
+const loadMyWeather = (latitude, longitude, countryAlpha, zip) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&zip=${zip},${countryAlpha}&appid=143f94029121f5175bd3737e4e2f0371`
+    // console.log(url);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayCurrent(data));
+}
+
+// Display my location weather
+const displayCurrent = current => {
+    // console.log(current);
+    const weatherArrCount = () => {
+        for (const weatherarr of current.weather) {
+            return weatherarr
+        }
+    }
+    const currentLocationWeather = weatherArrCount();
+    // console.log(currentLocationWeather)
+    weatherContainer.textContent = '';
+    const div = document.createElement('div');
+    div.classList.add('weather');
+    div.innerHTML = `
+    <h2 class="celcius">${parseInt(current.main.temp - 273.15)}<span>&#176;C</span></h2>
+    <div class="city">
+        <h2 class="city-name">${current.name}<sup>${current.sys.country}</sup></h2>
+        <p class="descrip">${currentLocationWeather.description}</p>
+    </div>
+    <img class="icon" src="http://openweathermap.org/img/wn/${currentLocationWeather.icon}.png" alt="">
+    `;
+    weatherContainer.appendChild(div);
+    changeBgImage(currentLocationWeather.description);
+}
+
+
+
+// Change BG Image
 const changeBgImage = desc => {
     // console.log(desc);
     if (desc == 'overcast clouds') {
