@@ -42,9 +42,9 @@ userInput.addEventListener("keyup", function (event) {
 const loadWeather = () => {
     const cityName = userInput.value;
     if (cityName == '') {
+        weatherContainer.textContent = '';
         errorMsg2.style.display = 'none';
         errorMsg.style.display = 'block';
-        weatherContainer.textContent = '';
         bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
         url(images/danger.jpg)`
     } else {
@@ -52,14 +52,26 @@ const loadWeather = () => {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=143f94029121f5175bd3737e4e2f0371`
         fetch(url)
             .then(res => res.json())
-            .then(data => displayWeather(data))
-            .catch(error => {
-                errorMsg.style.display = 'none';
-                errorMsg2.style.display = 'block';
-                weatherContainer.textContent = '';
-                bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
-        url(images/danger.jpg)`
-            });
+            .then(data => {
+                if (data.message == "city not found") {
+                    weatherContainer.textContent = '';
+                    errorMsg.style.display = 'none';
+                    errorMsg2.style.display = 'block';
+                    bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+                    url(images/danger.jpg)`
+                } else {
+                    displayWeather(data)
+                }
+
+            })
+
+        /* .catch(() => {
+            errorMsg.style.display = 'none';
+            errorMsg2.style.display = 'block';
+            weatherContainer.textContent = '';
+            bgImage.style.backgroundImage = `linear-gradient(180deg, rgb(0 11 93 / 72%), rgba(0, 0, 0, 0.7)),
+    url(images/danger.jpg)`
+        }); */
     }
 
 }
@@ -107,7 +119,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
         .then(data => loadMyWeather(lat, lon, data.results[0].components.country_code, data.results[0].components.postcode));
 });
 
-// My location
+// load Weather
 const loadMyWeather = (latitude, longitude, countryAlpha, zip) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&zip=${zip},${countryAlpha}&appid=143f94029121f5175bd3737e4e2f0371`
     // console.log(url);
@@ -116,29 +128,35 @@ const loadMyWeather = (latitude, longitude, countryAlpha, zip) => {
         .then(data => displayCurrent(data));
 }
 
-// Display my location weather
+// Display current location weather
 const displayCurrent = current => {
-    // console.log(current);
-    const weatherArrCount = () => {
-        for (const weatherarr of current.weather) {
-            return weatherarr
+    if (current.message === "city not found") {
+        console.log('something went wrong');
+    } else {
+        // console.log(current);
+        const weatherArrCount = () => {
+            for (const weatherarr of current.weather) {
+                return weatherarr
+            }
         }
+        const currentLocationWeather = weatherArrCount();
+        // console.log(currentLocationWeather)
+        weatherContainer.textContent = '';
+        const div = document.createElement('div');
+        div.classList.add('weather');
+        div.innerHTML = `
+        <h2 class="celcius">${parseInt(current.main.temp - 273.15)}<span>&#176;C</span></h2>
+        <div class="city">
+            <h2 class="city-name">${current.name}<sup>${current.sys.country}</sup></h2>
+            <p class="descrip">${currentLocationWeather.description}</p>
+        </div>
+        <img class="icon" src="http://openweathermap.org/img/wn/${currentLocationWeather.icon}.png" alt="">
+        `;
+        weatherContainer.appendChild(div);
+        changeBgImage(currentLocationWeather.description);
     }
-    const currentLocationWeather = weatherArrCount();
-    // console.log(currentLocationWeather)
-    weatherContainer.textContent = '';
-    const div = document.createElement('div');
-    div.classList.add('weather');
-    div.innerHTML = `
-    <h2 class="celcius">${parseInt(current.main.temp - 273.15)}<span>&#176;C</span></h2>
-    <div class="city">
-        <h2 class="city-name">${current.name}<sup>${current.sys.country}</sup></h2>
-        <p class="descrip">${currentLocationWeather.description}</p>
-    </div>
-    <img class="icon" src="http://openweathermap.org/img/wn/${currentLocationWeather.icon}.png" alt="">
-    `;
-    weatherContainer.appendChild(div);
-    changeBgImage(currentLocationWeather.description);
+
+
 }
 
 
