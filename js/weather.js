@@ -150,7 +150,7 @@ const displayCurrent = current => {
             <h2 class="city-name">${current.name}<sup>${current.sys.country}</sup></h2>
             <p class="descrip">${currentLocationWeather.description}</p>
         </div>
-        <img class="icon" src="http://openweathermap.org/img/wn/${weatherDetails.icon}@2x.png" alt="">
+        <img class="icon" src="http://openweathermap.org/img/wn/${currentLocationWeather.icon}@2x.png" alt="">
         `;
         weatherContainer.appendChild(div);
         changeBgImage(currentLocationWeather.description);
