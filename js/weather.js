@@ -7,9 +7,13 @@ const body = document.getElementById('body');
 
 
 // Current Date 
-var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
-console.log(utc);
-document.getElementById('date').innerText = utc;
+
+let d = new Date();
+let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+let mo = new Intl.DateTimeFormat('en', { month: 'long' }).format(d);
+let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+console.log(`${da}-${mo}-${ye}`);
+document.getElementById('date').innerText = `${da} ${mo} ${ye}`;
 
 // Current weekDay
 var currrentWeekDay = new Date().toLocaleTimeString('en-us', { weekday: 'long' }).split(' ')[0];
