@@ -16,7 +16,8 @@ console.log(`${da}-${mo}-${ye}`);
 document.getElementById('date').innerText = `${da} ${mo} ${ye}`;
 
 // Current weekDay
-var currrentWeekDay = new Date().toLocaleTimeString('en-us', { weekday: 'long' }).split(' ')[0];
+// var currrentWeekDay = new Date().toLocaleTimeString('en-us', { weekday: 'long' }).split(' ')[0];
+var currrentWeekDay = new Intl.DateTimeFormat('en', { weekday: 'long' }).format(d);
 console.log(currrentWeekDay);
 document.getElementById('week').innerText = currrentWeekDay;
 // current time
